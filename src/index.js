@@ -1,6 +1,8 @@
-// import './sass/main.scss';
+import './sass/main.scss';
 // import onSearch from './js/apiService'
+import imagesTpl from './templates/images.hbs';
 import ImageApiService from './js/apiService';
+
 
 const refs = {
     searchForm: document.querySelector('.js-search-form'),
@@ -15,11 +17,23 @@ refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
     e.preventDefault();
+    clearImagesContainer();
     imageApiService.query = e.currentTarget.elements.query.value;
-    imageApiService.fetchImage(searchQuery);
-};
+    imageApiService.resetPage();
+    imageApiService.fetchImage().then(images => {
+        appendImagesMarkup(images);
+    });
+}
 
 function onLoadMore() {
-    imageApiService.fetchImage(searchQuery);
+    imageApiService.fetchImage().then(appendImagesMarkup);
 };
 
+function appendImagesMarkup(images) {
+    refs.articlesContainer.insertAdjacentHTML('beforeend', imagesTpl
+    (images))
+};
+
+function clearImagesContainer() {
+    refs.articlesContainer.innerHTML = '';
+}
