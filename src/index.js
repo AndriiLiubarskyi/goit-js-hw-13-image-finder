@@ -1,5 +1,4 @@
 import './sass/main.scss';
-// import onSearch from './js/apiService'
 import imagesTpl from './templates/images.hbs';
 import ImageApiService from './js/apiService';
 
@@ -31,9 +30,13 @@ function onLoadMore() {
 
 function appendImagesMarkup(images) {
     refs.articlesContainer.insertAdjacentHTML('beforeend', imagesTpl
-    (images))
+        (images))
+    refs.articlesContainer.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+  });
 };
 
 function clearImagesContainer() {
     refs.articlesContainer.innerHTML = '';
-}
+};

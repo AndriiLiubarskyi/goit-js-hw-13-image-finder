@@ -1,36 +1,40 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
-
-// Стили для файла с примером HTML-фрагмента
-// @import './example';
-.form-group {
-  display: flex;
+.btn {
+  margin: 10px 0 10px 0;
+  background-color: rgb(196, 150, 240);
 }
-
 .images {
   display: block;
   display: flex;
   margin: 0;
   padding: 0;
+  height: auto;
+  width: 1200px;
+  flex-wrap: wrap;
 }
 
 .stats {
   display: block;
   display: flex;
-
-  align-items: center;
-  width: 280px;
+  align-items: flex-end;
+  width: 350px;
   flex-direction: row;
+  justify-content: space-around;
 }
 body {
   background-color: darkgrey;
+  width: 1200px;
+  padding: 25px;
+  text-align: center;
 }
 
 .stats-item {
   display: block;
   display: flex;
-
   width: 50px;
+}
+.photo-card {
+  height: auto;
+  width: 350px;
+  align-content: stretch;
+  margin-right: 15px;
 }
