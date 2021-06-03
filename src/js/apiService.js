@@ -2,6 +2,7 @@ export default class ImageApiService {
     constructor() {
         this.searchQuery = '';
         this.page = 1;
+        
     }
 
     fetchImage() {
