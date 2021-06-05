@@ -25,6 +25,7 @@ body {
   width: 1200px;
   padding: 25px;
   text-align: center;
+  margin: auto;
 }
 
 .stats-item {
@@ -39,6 +40,16 @@ body {
   margin-right: 15px;
 }
 
-.hidden {
+// .button {
+//   display: block;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+
+.is-hidden {
   display: none;
 }
+
+// .hidden {
+//   display: none;
+// }

@@ -1,57 +1,56 @@
 import './sass/main.scss';
 import imagesTpl from './templates/images.hbs';
 import ImageApiService from './js/apiService';
+import LoadMoreBtn from './js/load-more-btn';
 
+
+// const div = document.querySelector('.div')
 
 const refs = {
-    div: document.querySelector('.div'),
     searchForm: document.querySelector('.js-search-form'),
     articlesContainer: document.querySelector('.js-articles-container'),
-    loadMoreBtn: document.querySelector('[data-action="load-more"]')
 };
 
-refs.loadMoreBtn.classList.add("hidden");
+
+const loadMoreBtn = new LoadMoreBtn({
+    selector: '[data-action="load-more"]',
+    hidden: true,
+});
+
 const imageApiService = new ImageApiService();
 
-
 refs.searchForm.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
+loadMoreBtn.refs.button.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
-    hiddenRemove();
     e.preventDefault();
-    clearImagesContainer();
     imageApiService.query = e.currentTarget.elements.query.value;
     imageApiService.resetPage();
+    loadMoreBtn.hide();
     imageApiService.fetchImage().then(images => {
+        clearImagesContainer();
         appendImagesMarkup(images);
+        const imagesArrayLength = document.querySelector('.js-articles-container').children.length;
+        if (imagesArrayLength > 11) {
+            loadMoreBtn.show();
+        };
     });
 };
 
+
 function onLoadMore() {
+    loadMoreBtn.disable();
     imageApiService.fetchImage()
-    .then(appendImagesMarkup)
-        .then(hiddenRemove)
-        .then(divbottom)
+        .then(images => {
+            appendImagesMarkup(images);
+            loadMoreBtn.enable();
+        })
     };
     
-function divbottom() {    
-  refs.div.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-        })   
-};
-
     function appendImagesMarkup(images) {
-        refs.articlesContainer.insertAdjacentHTML('beforeend', imagesTpl
-        (images))
-
-};
-
-function hiddenRemove() {
-      refs.loadMoreBtn.classList.remove('hidden');
-};
-
+        refs.articlesContainer.insertAdjacentHTML('beforeend', imagesTpl(images));
+        refs.articlesContainer.scrollIntoView({behavior: 'smooth', block: 'end',});
+    };
 
 function clearImagesContainer() {
     refs.articlesContainer.innerHTML = '';
