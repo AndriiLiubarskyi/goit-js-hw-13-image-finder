@@ -13,40 +13,39 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <body>
-    
-    <form class="form-inline search-form js-search-form">
-      <div class="form-group mx-sm-3 mb-2">
-        <input 
-        type="text"
-        class='form-control'
-        name="query"
-        id='searchQuery' 
-        autocomplete="off" 
-        placeholder="Search images..." />
-      </div>
-      <button 
-      type="submit" 
-      class="btn btn-primary mb-2">
-      search
-    </button>
-  </form>
+    <div class = 'div'>
+      <form class="form-inline search-form js-search-form">
+        <div class="form-group mx-sm-3 mb-2">
+          <input 
+          type="text"
+          class='form-control'
+          name="query"
+          id='searchQuery' 
+          autocomplete="off" 
+          placeholder="Search images..." />
+        </div>
+        <button 
+          type="submit" 
+          class="btn btn-primary mb-2">
+          search
+      </button>
+      </form>
   
-  <ul class="images js-articles-container">
-  </ul>
+      <ul class="images js-articles-container">
+      </ul>
   
-  
-  <button
-  type="button"
-  class="btn btn-primary button"
-  data-action="load-more">
-  <span
-  class="spinner-border spinner-border-sm spinner is-hidden"
-  role="status"
-  aria-hidden="true"
-  ></span> 
-  <span class="label">Показать ещё</span>
-</button>
-
+      <button
+          type="button"
+          class="btn btn-primary button"
+          data-action="load-more">
+          <span
+          class="spinner-border spinner-border-sm spinner is-hidden"
+          role="status"
+          aria-hidden="true"
+          ></span> 
+          <span class="label">Показать ещё</span>
+      </button>
+    </div>
   
     <script src="index.js"></script>
   </body>

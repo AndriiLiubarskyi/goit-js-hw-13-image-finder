@@ -4,7 +4,7 @@ import ImageApiService from './js/apiService';
 import LoadMoreBtn from './js/load-more-btn';
 
 
-// const div = document.querySelector('.div')
+const div = document.querySelector('.div')
 
 const refs = {
     searchForm: document.querySelector('.js-search-form'),
@@ -49,9 +49,14 @@ function onLoadMore() {
     
     function appendImagesMarkup(images) {
         refs.articlesContainer.insertAdjacentHTML('beforeend', imagesTpl(images));
-        refs.articlesContainer.scrollIntoView({behavior: 'smooth', block: 'end',});
-    };
-
+        setTimeout(() =>
+            {
+                div.scrollIntoView(
+                    { behavior: 'smooth', block: 'end', }
+                )
+            }, 1000);
+};
+         
 function clearImagesContainer() {
     refs.articlesContainer.innerHTML = '';
 };
